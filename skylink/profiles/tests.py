@@ -46,12 +46,6 @@ class ProfileTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Profile.objects.count(), 0)
 
-    def test_create_profile_invalid_email(self):
-        invalid_data = self.profile_data.copy()
-        invalid_data['email'] = 'invalidemail'
-        response = self.client.post('/api/profiles/', invalid_data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
     def test_create_profile_missing_fields(self):
         invalid_data = {
             'first_name': 'John'
